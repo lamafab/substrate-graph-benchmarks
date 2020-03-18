@@ -1,12 +1,16 @@
 # Setup dependencies, skip installation
-curl https://getsubstrate.io -sSf | bash -s -- --fast
-source ~/.cargo/env
+#curl https://getsubstrate.io -sSf | bash -s -- --fast
+#source ~/.cargo/env
 
 # Download and compile Substrate with benchmarking features
-git clone https://github.com/paritytech/substrate
-cd substrate/bin/node/cli
-cargo build --release --features=runtime-benchmarks
-cd ../../../..
+#git clone https://github.com/paritytech/substrate
+#cd substrate/bin/node/cli
+#cargo build --release --features=runtime-benchmarks
+#cd ../../../..
+
+# Download binary
+curl -L https://github.com/lamafab/substrate-graph-benchmarks/releases/download/v0.1.0/substrate -o substrate
+chmod +x substrate
 
 # Destination directory for results
 mkdir -p out/
@@ -17,13 +21,13 @@ mkdir -p out/
 # - extrinsic
 run_bench () {
 	echo -ne "Benchmarking => pallet: $1, extrinsic: $2\n  - "
-	./substrate/target/release/substrate benchmark\
+	./substrate benchmark\
 		--chain dev\
 		--execution=wasm\
 		--wasm-execution=compiled\
 		--pallet $1\
 		--extrinsic $2\
-		--steps 100\
+		--steps 10\
 		--repeat 10\
 		> out/$1.$2.txt
 }
