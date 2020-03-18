@@ -9,7 +9,7 @@
 #cd ../../../..
 
 # Download binary
-curl -L https://github.com/lamafab/substrate-graph-benchmarks/releases/download/v0.1.0/substrate -o substrate
+curl -L https://github.com/lamafab/substrate-graph-benchmarks/releases/download/v0.1.0/substrate_ubuntu_18.04 -o substrate
 chmod +x substrate
 
 # Destination directory for results
